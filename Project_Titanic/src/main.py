@@ -2,20 +2,27 @@ from import_and_clean_data import import_data , clean_data
 from model import train_model
 from check import check_model
 
-Start = 0
+def model_check(best_model,X_test,Y_test):
+       check_model.check(best_model, X_test, Y_test)
 
-while Start !=1 :
-       Start = int(input("This is my first Project in python if you want to load data press 1: "))
+def model_train(X_train,Y_train):
+       best_model = train_model.train(X_train, Y_train)
 
-import_data.read_train_data()
-import_data.read_test_data()
+       return best_model
 
-train_data = import_data.read_train_data()
-test_data = import_data.read_test_data()
+def import_and_clean():
+       train_data = import_data.read_train_data()
+       test_data = import_data.read_test_data()
 
-X_train, Y_train, clean_data_train = clean_data.clean_train_data(train_data)
-X_test, Y_test, clean_data_test = clean_data.clean_test_data(test_data)
+       X_train, Y_train, clean_data_train = clean_data.clean_train_data(train_data)
+       X_test, Y_test, clean_data_test = clean_data.clean_test_data(test_data)
 
-best_model = train_model.train(X_train, Y_train)
+       return X_train, Y_train,X_test, Y_test, clean_data_train
 
-check_model.check(best_model,X_test,Y_test)
+def main():
+       X_train, Y_train,X_test, Y_test, clean_data_train = import_and_clean()
+       best_model = model_train(X_train,Y_train)
+       model_check(best_model,X_test,Y_test)
+
+
+main()
