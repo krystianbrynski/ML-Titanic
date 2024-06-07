@@ -1,4 +1,5 @@
 from import_and_clean_data import import_data , clean_data
+from model import train_model
 
 Start = 0
 
@@ -14,3 +15,4 @@ test_data = import_data.read_test_data()
 X_train, Y_train, clean_data_train = clean_data.clean_train_data(train_data)
 X_test, Y_test, clean_data_test = clean_data.clean_test_data(test_data)
 
+best_model = train_model.train(X_train, Y_train)
