@@ -16,7 +16,7 @@ def check(model, X_test, Y_test, model_name):
 
     directory_scores = "scores"
 
-    file_name = "Scores_"+ model_name + ".txt" # model_name = name of classificator and directory target
+    file_name = model_name + ".txt" # model_name = name of classificator and directory target
     directory_target = model_name
     file_path = os.path.join(directory_scores,directory_target, file_name)
 
