@@ -1,0 +1,8 @@
+Scores for Decision_Tree_scores
+Accuracy score: 0.9856459330143541
+Precision score: 1.0
+Recall score: 0.9605263157894737
+F1 Score: 0.9798657718120806
+Confusion Matrix: 
+[[266   0]
+ [  6 146]]

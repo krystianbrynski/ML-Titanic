@@ -1,77 +1,38 @@
 import pandas as pd
 
-def clean_train_data(data):
-    data = data.drop("PassengerId", axis=1)
-    data = data.drop("Cabin", axis=1)
-    data = data.drop("Name", axis=1)
-    data = data.drop("Ticket", axis=1)
+def clean_data(data: str) -> pd.DataFrame:
+    cleaned_data = data
+    cleaned_data = cleaned_data.drop(["PassengerId","Cabin","Name","Ticket"],axis=1)
 
-    data["0 - 18"] = 0
-    data["19 - 40"] = 0
-    data["40+"] = 0
+    cleaned_data["0 - 18"] = 0
+    cleaned_data["19 - 40"] = 0
+    cleaned_data["40+"] = 0
 
-    data["0 - 18"] = data["0 - 18"].where(~ (data["Age"] <= 18), 1)
-    data["19 - 40"] = data["19 - 40"].where(~ ((data["Age"] > 18) & (data["Age"] <= 40)), 1)
-    data["40+"] = data["40+"].where(~ (data["Age"] > 40), 1)
+    cleaned_data["0 - 18"] = cleaned_data["0 - 18"].where(~ (data["Age"] <= 18), 1)
+    cleaned_data["19 - 40"] = cleaned_data["19 - 40"].where(~ ((data["Age"] > 18) & (data["Age"] <= 40)), 1)
+    cleaned_data["40+"] = cleaned_data["40+"].where(~ (data["Age"] > 40), 1)
 
-    data["Sex_binary"] = 0
-    data["Sex_binary"] = data["Sex_binary"].where(data["Sex"] == "male", 1)
+    cleaned_data["Fare"] = cleaned_data["Fare"].fillna(cleaned_data["Fare"].mean())
 
-    data = data.drop("Sex", axis=1)
-    data = data.drop("Age", axis=1)
+    cleaned_data["Sex_binary"] = 0
+    cleaned_data["Sex_binary"] = cleaned_data["Sex_binary"].where(data["Sex"] == "male", 1)
 
-    missing_rows = data.query("Embarked.isna()")
-    data = data.drop(missing_rows.index, axis=0)
+    cleaned_data = cleaned_data.drop(["Sex","Age"], axis=1)
 
-    x = pd.get_dummies(data["Embarked"]).astype("int")
-    data=data.assign(
+    missing_rows = cleaned_data.query("Embarked.isna()")
+    cleaned_data = cleaned_data.drop(missing_rows.index, axis=0)
+
+    x = pd.get_dummies(cleaned_data["Embarked"]).astype("int")
+    cleaned_data=cleaned_data.assign(
     C = x["C"],
     Q = x["Q"],
     S = x["S"],
     )
 
-    data = data.drop("Embarked", axis=1)
+    cleaned_data = cleaned_data.drop("Embarked", axis=1)
 
-    Y = data["Survived"]
-    X= data.iloc[:,1:]
+    Y = cleaned_data["Survived"] # Selected target
+    X = cleaned_data.drop("Survived",axis=1) # Selected features, all without target column (Survived)
 
-    return (X,Y,data)
+    return (X,Y,cleaned_data) # return target, features and cleaned data
 
-def clean_test_data(data):
-    data = data.drop("PassengerId", axis=1)
-    data = data.drop("Cabin", axis=1)
-    data = data.drop("Name", axis=1)
-    data = data.drop("Ticket", axis=1)
-
-
-    data["Fare"] = data["Fare"].fillna(data["Fare"].mean())
-
-    data["0 - 18"] = 0
-    data["19 - 40"] = 0
-    data["40+"] = 0
-
-    data["0 - 18"] = data["0 - 18"].where(~ (data["Age"] <= 18), 1)
-    data["19 - 40"] = data["19 - 40"].where(~ ((data["Age"] > 18) & (data["Age"] <= 40)), 1)
-    data["40+"] = data["40+"].where(~ (data["Age"] > 40), 1)
-
-
-
-    data["Sex_binary"] = 0
-    data["Sex_binary"] = data["Sex_binary"].where(data["Sex"] == "male", 1)
-
-    data = data.drop("Sex", axis=1)
-    data = data.drop("Age", axis=1)
-
-    x = pd.get_dummies(data["Embarked"]).astype("int")
-    data=data.assign(
-    C = x["C"],
-    Q = x["Q"],
-    S = x["S"],
-    )
-
-    data = data.drop("Embarked", axis=1)
-
-    Y = data["Survived"]
-    X = data.iloc[:,1:]
-
-    return (X,Y,data)
