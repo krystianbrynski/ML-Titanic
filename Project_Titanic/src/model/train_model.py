@@ -5,7 +5,7 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn import svm
 
-directory_scores = "scores"
+directory_scores = "../scores"
 def train_decision_tree(X_train, Y_train):
 
     param_grid = {

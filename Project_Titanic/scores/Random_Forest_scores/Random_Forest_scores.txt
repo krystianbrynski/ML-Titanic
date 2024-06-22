@@ -1,8 +1,8 @@
 Scores for Random_Forest_scores
-Accuracy score: 0.8971291866028708
-Precision score: 0.9658119658119658
-Recall score: 0.743421052631579
-F1 Score: 0.8401486988847584
+Accuracy score: 0.9019138755980861
+Precision score: 0.9302325581395349
+Recall score: 0.7894736842105263
+F1 Score: 0.8540925266903915
 Confusion Matrix: 
-[[262   4]
- [ 39 113]]
+[[257   9]
+ [ 32 120]]

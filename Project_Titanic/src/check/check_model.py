@@ -14,7 +14,7 @@ def check(model, X_test, Y_test, model_name):
     f1 = f1_score(Y_test, Y_pred)
     conf_matrix = confusion_matrix(Y_test, Y_pred)
 
-    directory_scores = "scores"
+    directory_scores = "../scores"
 
     file_name = model_name + ".txt" # model_name = name of classificator and directory target
     directory_target = model_name
