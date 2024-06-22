@@ -8,7 +8,8 @@ from sklearn.metrics import f1_score
 import os
 
 
-def check(model: BaseEstimator, X_test: pd.DataFrame, Y_test: pd.DataFrame, model_name: str) -> None:
+def check(model: BaseEstimator, X_test: pd.DataFrame, Y_test: pd.DataFrame, model_name: str,
+          directory_scores: str) -> None:
     Y_pred = model.predict(X_test)
 
     accuracy = accuracy_score(Y_test, Y_pred)
@@ -16,8 +17,6 @@ def check(model: BaseEstimator, X_test: pd.DataFrame, Y_test: pd.DataFrame, mode
     recall = recall_score(Y_test, Y_pred)
     f1 = f1_score(Y_test, Y_pred)
     conf_matrix = confusion_matrix(Y_test, Y_pred)
-
-    directory_scores = "../scores"
 
     file_name = model_name + ".txt"  # model_name = name of classificator and directory target
     directory_target = model_name

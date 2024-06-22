@@ -7,18 +7,11 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn import svm
 
-directory_scores = "../scores"
 
-
-def train_decision_tree(X_train: pd.DataFrame, Y_train: pd.DataFrame) -> DecisionTreeClassifier:
-    param_grid = {
-        "max_depth": [3],
-        "min_samples_split": [2, 5],
-        "min_samples_leaf": [1, 2]
-    }
-
+def train_decision_tree(X_train: pd.DataFrame, Y_train: pd.DataFrame, directory_scores: str,
+                        decision_tree_params: dict) -> DecisionTreeClassifier:
     model = DecisionTreeClassifier()
-    grid_search = GridSearchCV(estimator=model, param_grid=param_grid, cv=5, scoring='accuracy')
+    grid_search = GridSearchCV(estimator=model, param_grid=decision_tree_params, cv=5, scoring='accuracy')
     grid_search.fit(X_train, Y_train)
     best_model = grid_search.best_estimator_
 
@@ -39,19 +32,12 @@ def train_svm(X_train: pd.DataFrame, Y_train: pd.DataFrame) -> svm:
     return clf
 
 
-def train_random_forest(X_train: pd.DataFrame, Y_train: pd.DataFrame) -> RandomForestClassifier:
-    param_grid = {
-        'n_estimators': [100],
-        'max_depth': [3],
-        # 'min_samples_split': [2],
-        #  'min_samples_leaf': [1]
-    }
-
+def train_random_forest(X_train: pd.DataFrame, Y_train: pd.DataFrame, directory_scores: str,
+                        random_forest_parameters: dict) -> RandomForestClassifier:
     rf = RandomForestClassifier()
-    grid_search = GridSearchCV(rf, param_grid, cv=3, scoring='f1')
+    grid_search = GridSearchCV(rf, param_grid=random_forest_parameters, cv=3, scoring='f1')
     grid_search.fit(X_train, Y_train)
     improved_rf = grid_search.best_estimator_
-
     all_trees = improved_rf.estimators_
 
     # Added ten trees
