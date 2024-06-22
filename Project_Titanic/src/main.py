@@ -7,7 +7,7 @@ from check import check_model
 
 @click.command()
 @click.option('--config', '-c', default='../config.yaml', help='Path to the configuration file')
-def run_pipeline(config):
+def run_pipeline(config) -> None:
     with open(config, 'r') as file:
         config_data = yaml.safe_load(file)
 
@@ -17,8 +17,8 @@ def run_pipeline(config):
         train_data = import_data.read_data(train_data_path)
         test_data = import_data.read_data(test_data_path)
 
-        X_train, Y_train, clean_data_train = clean_data.clean_data(train_data)
-        X_test, Y_test, clean_data_test = clean_data.clean_data(test_data)
+        X_train, Y_train = clean_data.clean_data(train_data)
+        X_test, Y_test = clean_data.clean_data(test_data)
 
         decisiontree_model = train_model.train_decision_tree(X_train, Y_train)
         svm_model = train_model.train_svm(X_train, Y_train)

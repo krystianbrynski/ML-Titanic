@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-def clean_data(data: str) -> pd.DataFrame:
+def clean_data(data: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
     cleaned_data = data
     cleaned_data = cleaned_data.drop(["PassengerId", "Cabin", "Name", "Ticket"], axis=1)
 
@@ -35,4 +35,4 @@ def clean_data(data: str) -> pd.DataFrame:
     Y = cleaned_data["Survived"]  # Selected target
     X = cleaned_data.drop("Survived", axis=1)  # Selected features, all without target column (Survived)
 
-    return (X, Y, cleaned_data)  # return target, features and cleaned data
+    return X, Y  # return target, features
