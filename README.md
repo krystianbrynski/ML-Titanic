@@ -54,7 +54,7 @@ In the "scores" folder, there are three subfolders dedicated to each specific mo
 - **Precision:** Proportion of true positive predictions out of all positive predictions.
 - **Recall:** Proportion of true positive predictions out of all actual positive instances.
 
-![Screenshot](https://github.com/krystianbrynski/KrystianrBry_ML_Titanic/blob/check/Project_Titanic/photos/Screenshoot.png)
+![Screenshot](https://github.com/krystianbrynski/KrystianrBry_ML_Titanic/blob/main/Project_Titanic/photos/Screenshoot.png)
 
 - **True Positives (TP):** The number of correctly predicted positive instances.
 - **True Negatives (TN):** The number of correctly predicted negative instances.
@@ -72,12 +72,12 @@ To check detailed results, please navigate to the 'scores' folder.
 
 ## Decision tree classifier diagram: 
 
-![Screenshot](https://github.com/krystianbrynski/KrystianrBry_ML_Titanic/blob/check/Project_Titanic/scores/Decision_Tree_scores/decision_tree_plot.png)
+![Screenshot](https://github.com/krystianbrynski/KrystianrBry_ML_Titanic/blob/main/Project_Titanic/scores/Decision_Tree_scores/decision_tree_plot.png)
 
 ## Random forest classifier diagrams: 
 
-![Screenshot](https://github.com/krystianbrynski/KrystianrBry_ML_Titanic/blob/check/Project_Titanic/scores/Random_Forest_scores/decision_tree_1.png)
-![Screenshot](https://github.com/krystianbrynski/KrystianrBry_ML_Titanic/blob/check/Project_Titanic/scores/Random_Forest_scores/decision_tree_2.png)
+![Screenshot](https://github.com/krystianbrynski/KrystianrBry_ML_Titanic/blob/main/Project_Titanic/scores/Random_Forest_scores/decision_tree_1.png)
+![Screenshot](https://github.com/krystianbrynski/KrystianrBry_ML_Titanic/blob/main/Project_Titanic/scores/Random_Forest_scores/decision_tree_2.png)
 
 
 
