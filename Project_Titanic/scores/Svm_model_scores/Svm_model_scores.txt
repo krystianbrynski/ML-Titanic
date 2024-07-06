@@ -1,0 +1,8 @@
+Scores for Svm_model_scores
+Accuracy score: 1.0
+Precision score: 1.0
+Recall score: 1.0
+F1 Score: 1.0
+Confusion Matrix: 
+[[266   0]
+ [  0 152]]
